@@ -65,3 +65,13 @@ best_model_name = max(best_models, key=lambda x: best_models[x]['f1_score'])
 print(f"\nBest Model based on F1 Score: {best_model_name}")
 print("Parameters:", best_models[best_model_name]['best_params'])
 print("F1 Score:", best_models[best_model_name]['f1_score'])
+
+
+
+
+
+# Save Model and Encoders
+joblib.dump(best_rf, 'best_rf_model.joblib')
+for col, encoder in label_encoders.items():
+    joblib.dump(encoder, f'label_encoder_{col}.joblib')
+joblib.dump(scaler, 'scaler.joblib')
